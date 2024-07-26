@@ -34,13 +34,14 @@ app.use('/user', userRoute)
 app.use('/add-blog', blogRoute)
 
 
-const utcDate = new Date().toUTCString()
+const utcDate = new Date(new Date().toUTCString())
+console.log(`UTS Date Time : `,utcDate)
 const d = new Date(utcDate)
-console.log(formatAMPM(d))
+console.log(`IST Date time : `,formatAMPM(d))
 function formatAMPM(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
+    var ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0'+minutes : minutes;
