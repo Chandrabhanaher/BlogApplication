@@ -1,0 +1,11 @@
+npm i init  
+npm i dotenv - confign port and ip adress
+npm i nodemon - start server
+npm i express - create on server
+npm i mongoose - ise MongoDB
+npm i ejs  - using views htmls pages
+npm i bootstrap - css bootstrap
+
+auth
+npm i jsonwebtoken
+npm i cookie-parser

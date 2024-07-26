@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Blog application</title>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+        <div class="container mt-4">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Blog</th>
+                </tr>
+                <% if (locals.blog) { %>
+                    <% blog.forEach((element,index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index+1 %>
+                            </td>
+                            <td>
+                                <%= element.title %>
+                            </td>
+                            <td>
+                                <%= element.body %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } %>
+            </table>
+        </div>
+        <%- include('./partials/scripts') %>
+</body>
+
+</html>
