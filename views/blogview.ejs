@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Blog application</title>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+
+        <div class="container mt-4">
+            <h5> <%= blog.title %></h5>
+            <img src="<%= blog.coerImageUrl %>" width="450px"/>
+            <br>
+            <pre class="mt-3"><%= blog.body %></pre>
+        </div>
+        <div class="container mt-4">
+            <img src="<%= blog.createdBy.profileImageUrl %>" width="50px"/>
+            <%= blog.createdBy.fullname %>
+        </div>
+        <% if (locals.user) { %>
+            <div class="container mt-3">
+                <h6>Comments</h6>
+                <form action="/blog/add_comment/<%= blog._id %>" method="post">
+                    <div class="mb-3"></div>
+                    <input type="text" name="comment" placeholder="Enter comment" class="form-control"/>
+                    <button type="submit" class="btn btn-sm btn-primary">Add</button>
+                </form>
+            </div>
+            
+        <% } %>
+        
+        <%- include('./partials/scripts') %>
+</body>
+
+</html>

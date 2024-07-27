@@ -6,7 +6,7 @@ const { checkForAuthontication, restrictTo } = require('./middlewares/auth')
 
 const userRoute = require('./routes/userroute')
 const blogRoute = require('./routes/blogroute')
-
+const Blog = require('./models/blog')
 
 const app = express()
 const PORT = 8000
@@ -16,12 +16,16 @@ dbConnect('mongodb://127.0.0.1:27017/blogs')
 app.set('view engine', 'ejs')
 app.set('views', path.resolve('./views'))
 
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(checkForAuthontication)
 
-const Blog = require('./models/blog')
+app.use(express.static(path.resolve('./public')));
+app.use('*/images',express.static(path.join(__dirname, 'public/images')));
+app.use('*/uploads',express.static(path.join(__dirname, 'public/uploads')));
+
 app.get('/', async (req, res) => {
     const blogs = await Blog.find({})
     return res.render('home', { 
@@ -31,7 +35,7 @@ app.get('/', async (req, res) => {
 })
 
 app.use('/user', userRoute)
-app.use('/add-blog', blogRoute)
+app.use('/blog', blogRoute)
 
 
 const utcDate = new Date(new Date().toUTCString())

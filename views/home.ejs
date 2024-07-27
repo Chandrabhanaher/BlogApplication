@@ -8,29 +8,21 @@
 
 <body>
     <%- include('./partials/nav') %>
+
         <div class="container mt-4">
-            <table class="table">
-                <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Blog</th>
-                </tr>
+            <div class="row row-cols-4">
                 <% if (locals.blog) { %>
                     <% blog.forEach((element,index)=> { %>
-                        <tr>
-                            <td>
-                                <%= index+1 %>
-                            </td>
-                            <td>
-                                <%= element.title %>
-                            </td>
-                            <td>
-                                <%= element.body %>
-                            </td>
-                        </tr>
-                        <% }) %>
-                            <% } %>
-            </table>
+                            <div class="card" style="width: 14rem;">
+                                <img src="<%= element.coerImageUrl %> " class="card-img-top img-fluid img-thumbnail" alt="...">
+                                <div class="card-body">
+                                <h5 class="card-title"><%= element.title %></h5>
+                                <a href="/blog/<%= element._id %>" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                    <% }) %>
+                <% } %>
+            </div>
         </div>
         <%- include('./partials/scripts') %>
 </body>
