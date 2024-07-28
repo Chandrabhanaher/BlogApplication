@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path')
 const express = require('express')
 const cookieParser = require('cookie-parser')
@@ -8,10 +9,11 @@ const userRoute = require('./routes/userroute')
 const blogRoute = require('./routes/blogroute')
 const Blog = require('./models/blog')
 
+console.log('MongoDB URL :',process.env.MONGO_URL, ' PORT : ', process.env.PORT)
 const app = express()
-const PORT = 8000
+const PORT = process.env.PORT || 8001
 
-dbConnect('mongodb://127.0.0.1:27017/blogs')
+dbConnect(process.env.MONGO_URL)
 
 app.set('view engine', 'ejs')
 app.set('views', path.resolve('./views'))

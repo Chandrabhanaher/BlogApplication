@@ -9,3 +9,5 @@ npm i bootstrap - css bootstrap
 auth
 npm i jsonwebtoken
 npm i cookie-parser
+
+npm i dotenv
